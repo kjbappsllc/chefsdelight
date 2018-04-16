@@ -1,4 +1,4 @@
-from flask import Flask, g
+from flask import Flask, g, flash, redirect, render_template, request, session, abort
 import os
 import xlrd
 import sqlite3
@@ -11,10 +11,43 @@ app = Flask(__name__)
 imagesAPIPoint = "https://pixabay.com/api/?key=8572181-d7de3a9d607dcb04af86261ab&q=food&per_page=200"
 binary = BytesIO()
 
+loggedInSession = 'LOGGED_IN'
+
 ##ROUTES
 @app.route("/")
-def hello():
-    return "Hello World!"
+def home():
+    if not session.get(loggedInSession):
+        return render_template('login.html')
+    else:
+        return "Hello Home!"
+
+@app.route("/login", methods=['POST'])
+def do_login():
+    db = get_db()
+    rows = None
+
+    EMAIL = str(request.form['email'])
+    PASSWORD = str(request.form['password'])
+    USERTYPE = str(request.form['view']) + 's'
+
+    try:
+        if(USERTYPE == 'users'):
+            rows = db.execute("select * from master_users natural join (select * from users where email=?)", [request.form['email']])
+        elif (USERTYPE == 'chefs'):
+            rows = db.execute("select * from master_users natural join (select * from chefs where email=?)", [request.form['email']])
+        else:
+            print('\nInvalid user type\n')
+            return home()
+    except sqlite3.Error:
+        flash('Incorrect username or password!')
+        return home()
+
+    if request.form['password'] == 'password' and request.form['username'] == 'admin':
+        session[loggedInSession] = True
+    else:
+        flash('Incorrect username or password!')
+    return home()
+    
 
 ##DEV FUNCTIONS
 @app.teardown_appcontext
@@ -173,4 +206,5 @@ def populateDB():
     db.commit()
 
 if __name__ == "__main__":
+    app.secret_key = os.urandom(12)
     app.run()
