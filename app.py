@@ -56,16 +56,6 @@ def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
 
-@app.cli.command("testImage")
-def getImage():
-    db = get_db()
-    rows = db.execute("select * from recipes where recipe_id = 2")
-    rowlist = rows.fetchall()
-
-    for row in rowlist:
-        print(row["email"])
-        Image.open(BytesIO(row["image"])).save("key.jpeg", format="JPEG")
-
 @app.cli.command("createDB")
 def initDb():
     db = get_db()
@@ -127,20 +117,10 @@ def populateDB():
     print(len(response["hits"]));
     images = response["hits"]
     for i in range(1, sheet.nrows):
-        hexData = None
-        response = requests.get(images[i]["largeImageURL"])
-        img = Image.open(BytesIO(response.content))
-        img = img.resize((500,500), Image.ANTIALIAS)
-        if img.mode in ('RGBA', 'LA'):
-            print("IS RGBA IMAGE")
-            background = Image.new(img.mode[:-1], img.size, '#fff')
-            background.paste(img, img.split()[-1])
-            img = background
-        img.save(binary, format="JPEG")
-        hexData = binary.getvalue()
+        response = images[i-1]["largeImageURL"]
         print("generated Image ", i)
-        db.execute("insert into recipes (email, name, recipe_id, image) values (?, ?, ?, ?)", 
-        [sheet.row(i)[0].value, sheet.row(i)[1].value, sheet.row(i)[2].value, hexData])
+        db.execute("insert into recipes (email, name, recipe_id, imagesrc, instructions) values (?, ?, ?, ?, ?)", 
+        [sheet.row(i)[0].value, sheet.row(i)[1].value, sheet.row(i)[2].value, response, sheet.row(i)[3].value])
     db.commit()
 
     ##ingredients

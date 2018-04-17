@@ -23,7 +23,8 @@ CREATE TABLE recipes (
     email VARCHAR(30) REFERENCES chefs(email) NOT NULL,
     name VARCHAR(40) NOT NULL,
     recipe_id INTEGER NOT NULL,
-    image BLOB,
+    imagesrc VARCHAR(50),
+    instructions VARCHAR(500),
     PRIMARY KEY(recipe_id)
 );
 DROP TABLE IF EXISTS ingredients;
