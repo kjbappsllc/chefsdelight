@@ -15,18 +15,16 @@
     <p>You're logged in already!</p>
     {% else %}
     <header>
-        <nav>
-            <div class="row">
-                <h1 class="header-text">CD</h1>
-                <div class="sign-in">
-                    <form action="/login" method="POST">
-                        <input type="text" class="login-field" value="" placeholder="email" name="lemail">
-                        <input type="text" class="login-field" value="" placeholder="password" name="lpassword">
-                        <input type="submit" value="Log in" class="header-btn">
-                    </form>
-                </div>
+        <div class="row header-row">
+            <h1 class="header-text">CD</h1>
+            <div class="sign-in">
+                <form action="/login" method="POST" class="header-form">
+                    <input type="text" class="login-field" value="" placeholder="email" name="lemail">
+                    <input type="text" class="login-field" value="" placeholder="password" name="lpassword">
+                    <input type="submit" value="Log in" class="header-btn">
+                </form>
             </div>
-        </nav>
+        </div>
     </header>
     <form action="/sign-up" method="POST">
         <h1 class="screen-title">Chef's Delight</h1>
