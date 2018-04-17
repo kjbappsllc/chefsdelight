@@ -23,31 +23,29 @@ def home():
 
 @app.route("/login", methods=['POST'])
 def do_login():
+    print("Attempt to Login!")
     db = get_db()
     rows = None
 
-    EMAIL = str(request.form['email'])
-    PASSWORD = str(request.form['password'])
-    USERTYPE = str(request.form['view']) + 's'
+    EMAIL = str(request.form['lemail'])
+    PASSWORD = str(request.form['lpassword'])
 
     try:
-        if(USERTYPE == 'users'):
-            rows = db.execute("select * from master_users natural join (select * from users where email=?)", [request.form['email']])
-        elif (USERTYPE == 'chefs'):
-            rows = db.execute("select * from master_users natural join (select * from chefs where email=?)", [request.form['email']])
-        else:
-            print('\nInvalid user type\n')
-            return home()
+        rows = db.execute("select * from master_users where email=?",[EMAIL])
     except sqlite3.Error:
         flash('Incorrect username or password!')
         return home()
 
-    if request.form['password'] == 'password' and request.form['username'] == 'admin':
+    if PASSWORD == 'password' and EMAIL == 'admin':
         session[loggedInSession] = True
     else:
         flash('Incorrect username or password!')
     return home()
     
+@app.route("/sign-up", methods=['POST'])
+def do_signup():
+    print("Attempt To Sign Up!")
+    return home()
 
 ##DEV FUNCTIONS
 @app.teardown_appcontext
@@ -207,4 +205,4 @@ def populateDB():
 
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
-    app.run()
+    app.run(port=8080)
