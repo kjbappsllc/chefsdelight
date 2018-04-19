@@ -7,6 +7,9 @@ import requests
 from io import BytesIO
 import time
 
+##Login Email: vbanbridge0@com.com
+##Login Password: rWYkxT0T
+
 app = Flask(__name__)
 imagesAPIPoint = "https://pixabay.com/api/?key=8572181-d7de3a9d607dcb04af86261ab&q=food&per_page=200"
 binary = BytesIO()
@@ -15,9 +18,13 @@ loggedInSession = 'LOGGED_IN'
 
 ##ROUTES
 @app.route("/")
-def home():
+def home(userType = None):
+    ut = 'user'
+    if userType:
+        ut = userType
+
     if not session.get(loggedInSession):
-        return render_template('login.html', type=None)
+        return render_template('login.html', type=ut)
     else:
         return "Hello Home!"
 
@@ -25,27 +32,72 @@ def home():
 def do_login():
     print("Attempt to Login!")
     db = get_db()
-    rows = None
 
     EMAIL = str(request.form['lemail'])
     PASSWORD = str(request.form['lpassword'])
 
-    try:
-        rows = db.execute("select * from master_users where email=?",[EMAIL])
-    except sqlite3.Error:
-        flash('Incorrect username or password!')
+    print(EMAIL)
+    print(PASSWORD)
+
+    if not EMAIL or not PASSWORD:
         return home()
 
-    if PASSWORD == 'password' and EMAIL == 'admin':
-        session[loggedInSession] = True
-    else:
+    try:
+        rows = db.execute("select * from master_users where email=?",[EMAIL])
+        user_row = rows.fetchone()
+        print(str(dict(user_row)))
+
+        if PASSWORD == user_row['password'] and EMAIL == user_row['email']:
+            session[loggedInSession] = True
+        else:
+            flash('Incorrect username or password!')
+        return home()
+
+    except sqlite3.Error or NameError:
         flash('Incorrect username or password!')
-    return home()
+        return home()
     
 @app.route("/sign-up", methods=['POST'])
 def do_signup():
     print("Attempt To Sign Up!")
-    return home()
+    db = get_db()
+
+    FNAME = ''
+    LNAME = ''
+    RESTAURANT = ''
+    EMAIL = ''
+    PASSWORD = ''
+    RESTAURANT = ''
+    USERNAME = ''
+
+    if(str(request.form['view']) == 'chef'):
+        FNAME = str(request.form['first-name'])
+        LNAME = str(request.form['last-name'])
+        RESTAURANT = str(request.form['restaurant'])
+        EMAIL = str(request.form['email'])
+        PASSWORD = str(request.form['password'])
+
+        try:
+            db.execute('insert into master_users (email, password) values (?, ?)', [EMAIL, PASSWORD])
+            db.execute('insert into chefs (email, lname, fname, restaurant) values (?, ?, ?, ?)', [EMAIL, LNAME, FNAME, RESTAURANT])
+            db.commit()
+        except sqlite3.Error:
+            return home(str(request.form['view']))
+
+    else:
+        EMAIL = str(request.form['email'])
+        PASSWORD = str(request.form['password'])
+        USERNAME = str(request.form['username'])
+
+        try:
+            db.execute('insert into master_users (email, password) values (?, ?)', [EMAIL, PASSWORD])
+            db.execute('insert into users (email, username) values (?, ?)', [EMAIL, USERNAME])
+            db.commit()
+        except sqlite3.Error:
+            return home(str(request.form['view']))
+    
+    session[loggedInSession] = True
+    return home(str(request.form['view']))
 
 @app.route("/handleSwitch", methods=['POST'])
 def do_switch():
