@@ -8,6 +8,27 @@
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/login.css') }}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type=text/javascript>
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+      </script>
+    <script type="text/javascript">
+        $(function () {
+            $(document).on('click', ['input#user', 'input#chef'],  function () {
+                $.ajax({
+                    url: $SCRIPT_ROOT + '/handleSwitch',
+                    type: 'POST',
+                    data: { json: $('input[name="view"]:checked').val() },
+                    success: function (response) {
+                        $('#login-form').html(response)
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                })
+            })
+        })
+    </script>
 </head>
 
 <body>
@@ -34,24 +55,24 @@
                     <h1>Sign Up</h1>
                 </div>
 
-                <div class="login-form">
+                <div class="login-form" id="login-form">
                     <div class="control-group">
-                        <input type="text" class="login-field" value="" placeholder="email" name="email">
+                        <input type="text" class="login-field" value="" placeholder="Email" name="email">
                         <label class="login-field-icon fui-user" for="login-name"></label>
                     </div>
 
                     <div class="control-group">
-                        <input type="password" class="login-field" value="" placeholder="password" name="password">
+                        <input type="password" class="login-field" value="" placeholder="Password" name="password">
                         <label class="login-field-icon fui-lock" for="login-pass"></label>
                     </div>
 
                     <div class="control-group">
-                        <input type="text" class="login-field" value="" placeholder="username" name="username">
+                        <input type="text" class="login-field" value="" placeholder="Username" name="username">
                         <label class="login-field-icon fui-lock" for="login-pass"></label>
                     </div>
-                    
+
                     <input type="submit" value="Sign Up!" class="btn btn-primary btn-large btn-block">
-                    <div class="switch">
+                    <div class="switch" id="switch-container">
                         <input type="radio" class="switch-input" name="view" value="user" id="user" checked>
                         <label for="user" class="switch-label switch-label-off">User</label>
                         <input type="radio" class="switch-input" name="view" value="chef" id="chef">

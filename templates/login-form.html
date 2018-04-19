@@ -1,0 +1,49 @@
+<div class="control-group">
+    <input type="text" class="login-field" value="" placeholder="Email" name="email">
+    <label class="login-field-icon fui-user" for="login-name"></label>
+</div>
+
+<div class="control-group">
+    <input type="password" class="login-field" value="" placeholder="Password" name="password">
+    <label class="login-field-icon fui-lock" for="login-pass"></label>
+</div>
+
+{% if type == 'user' %}
+<div class="control-group">
+    <input type="text" class="login-field" value="" placeholder="Username" name="username">
+    <label class="login-field-icon fui-lock" for="login-pass"></label>
+</div>
+{% endif %}
+
+{% if type == 'chef' %}
+<div class="control-group">
+    <input type="text" class="login-field" value="" placeholder="First Name" name="first-name">
+    <label class="login-field-icon fui-lock" for="login-pass"></label>
+</div>
+
+<div class="control-group">
+    <input type="text" class="login-field" value="" placeholder="Last Name" name="last-name">
+    <label class="login-field-icon fui-lock" for="login-pass"></label>
+</div>
+
+<div class="control-group">
+        <input type="text" class="login-field" value="" placeholder="Restuarant" name="restaurant">
+        <label class="login-field-icon fui-lock" for="login-pass"></label>
+    </div>
+{% endif %}
+
+<input type="submit" value="Sign Up!" class="btn btn-primary btn-large btn-block">
+<div class="switch" id="switch-container">
+    {% if type == 'user' %}
+    <input type="radio" class="switch-input" name="view" value="user" id="user" checked>
+    <label for="user" class="switch-label switch-label-off">User</label>
+    <input type="radio" class="switch-input" name="view" value="chef" id="chef">
+    <label for="chef" class="switch-label switch-label-on">Chef</label>
+    {% else %}
+    <input type="radio" class="switch-input" name="view" value="user" id="user">
+    <label for="user" class="switch-label switch-label-off">User</label>
+    <input type="radio" class="switch-input" name="view" value="chef" id="chef" checked>
+    <label for="chef" class="switch-label switch-label-on">Chef</label>
+    {% endif %}
+    <span class="switch-selection"></span>
+</div>

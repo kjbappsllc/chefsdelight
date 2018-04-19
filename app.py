@@ -1,4 +1,4 @@
-from flask import Flask, g, flash, redirect, render_template, request, session, abort
+from flask import Flask, g, flash, redirect, render_template, request, session, abort, jsonify
 import os
 import xlrd
 import sqlite3
@@ -17,7 +17,7 @@ loggedInSession = 'LOGGED_IN'
 @app.route("/")
 def home():
     if not session.get(loggedInSession):
-        return render_template('login.html')
+        return render_template('login.html', type=None)
     else:
         return "Hello Home!"
 
@@ -46,6 +46,12 @@ def do_login():
 def do_signup():
     print("Attempt To Sign Up!")
     return home()
+
+@app.route("/handleSwitch", methods=['POST'])
+def do_switch():
+    loginType = str(request.form['json'])
+    print(loginType)
+    return render_template('login-form.html', type=loginType)
 
 ##DEV FUNCTIONS
 @app.teardown_appcontext
