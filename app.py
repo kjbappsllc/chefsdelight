@@ -26,7 +26,7 @@ def home(userType = None):
     if not session.get(loggedInSession):
         return render_template('login.html', type=ut)
     else:
-        return "Hello Home!"
+        return render_template('main.html')
 
 @app.route("/login", methods=['POST'])
 def do_login():
@@ -53,7 +53,7 @@ def do_login():
             flash('Incorrect username or password!')
         return home()
 
-    except sqlite3.Error or NameError:
+    except sqlite3.Error or NameError or TypeError:
         flash('Incorrect username or password!')
         return home()
     
@@ -99,6 +99,15 @@ def do_signup():
     session[loggedInSession] = True
     return home(str(request.form['view']))
 
+@app.route("/chef")
+def go_chef():
+    return render_template('chef-page.html')
+
+@app.route("/recipe/")
+def go_recipe():
+    return render_template('recipe-page.html')
+
+##ROUTE FUNCTIONALITY
 @app.route("/handleSwitch", methods=['POST'])
 def do_switch():
     loginType = str(request.form['json'])

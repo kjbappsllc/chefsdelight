@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/reuseable.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/login.css') }}">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type=text/javascript>
         $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-      </script>
+    </script>
     <script type="text/javascript">
         $(function () {
             $(document).on('click', 'input#chef', function () {
@@ -57,7 +58,7 @@
             <div class="sign-in">
                 <form action="/login" method="POST" class="header-form">
                     <input type="text" class="login-field" value="" placeholder="email" name="lemail">
-                    <input type="text" class="login-field" value="" placeholder="password" name="lpassword">
+                    <input type="password" class="login-field" value="" placeholder="password" name="lpassword">
                     <input type="submit" value="Log in" class="header-btn">
                 </form>
             </div>

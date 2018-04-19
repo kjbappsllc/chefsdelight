@@ -1,68 +1,27 @@
-/* INITIAL SETUP */
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-*:focus {
-  outline: none;
-}
-
-.clearfix {
-  zoom: 1;
-}
-.clearfix:after {
-  content: '.';
-  clear: both;
-  display: block;
-  height: 0;
-  visibility: hidden;
-}
-
-/* PARENT STYLES */
 html,
 body {
   background-color: #f89406;
-  font-family: 'Roboto';
-  color: #555;
-  font-size: 20px;
-  text-rendering: optimizeLegibility;
-  overflow-x: hidden;
 }
 
-/* REUSABLE STYLES */
-.row {
-  max-width: 1140px;
-  margin: 0 auto;
-}
 
-.btn {
-  border: 2px solid transparent;
-  background: #f89406;
-  color: #ffffff;
-  font-size: 16px;
-  line-height: 25px;
-  padding: 10px 0;
-  text-decoration: none;
-  text-shadow: none;
-  border-radius: 3px;
-  box-shadow: none;
-  transition: 0.25s;
-  display: block;
-  width: 250px;
-  margin: 0 auto;
+/* HEADER - SIGN IN */
+header {
+  height: 17vh;
+  background-color: #fff;
 }
 
 .btn:hover,
 .header-btn:hover {
   background-color: rgb(201, 117, 0);
 }
-
-/* HEADER - SIGN IN */
-header {
-  height: 17vh;
-  background-color: #fff;
+  
+.header-text {
+  font-size: 250%;
+  margin-top: 30px;
+  float: left;
+  font-family: 'Lobster';
+  color: #f89406;
+  margin-left: 15px;
 }
 
 .header-row, .header-form {
@@ -71,15 +30,6 @@ header {
 
 .header-form {
   padding: 6vh 0;
-}
-
-.header-text {
-  font-size: 250%;
-  margin-top: 30px;
-  float: left;
-  font-family: 'Lobster';
-  color: #f89406;
-  margin-left: 15px;
 }
 
 .sign-in {

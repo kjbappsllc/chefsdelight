@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HTML div tag</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/reuseable.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/chef.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <div class="row header-main">
+            <h1 class="header-text-main">CD</h1>
+        </div>
+    </header>
+    
+    <!--  BODY ---->
+
+    <!-- CHEF INFO -->
+    <h1 class="chefandres"> Chef Name - Best Food Spot</h1>
+
+    <h5 class="chefemail"> ChefCurry@chefitup.chef</h5>
+
+    <h2 class="chefrating"> Chefs rating:</h2>
+    <div class="rating">
+        <span>☆</span>
+        <span>☆</span>
+        <span>☆</span>
+        <span>☆</span>
+        <span>☆</span>
+    </div>
+
+    <!-- Try to figure out how to place image on the same column as the chef rating -->
+    <div class="chefpic">
+        <img src="chefcurry.jpg" alt="Pic of Chef Curry" style="width: 150px; height: 150px">
+    </div>
+
+    <!-- Use Grid Once i figure out how to use it-->
+    <!-- List of chef's Dishes-->
+    <h3 class="dish"> Dishes</h3>
+
+    <p>Krabby Patty</p>
+    <img src="kp.jpg" alt="A Fuccn Krabby Patty">
+
+    <div class="inglink">
+        <a href="https://www.fakeshit.com" target="blank"> Krabby Patty Ingredients! </a>
+    </div>
+
+    <!-- rate the chef code-->
+    <div class="commentbar">
+        <form action="/html/tags/html_form_tag_action.cfm" method="post">
+            <div>
+                <textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;">
+            Type Comments
+            </textarea>
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+
+</body>
+
+</html>

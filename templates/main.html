@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Chef's Delight</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/reuseable.css') }}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{url_for('static', filename='styles/main.css')}}" />
+</head>
+
+<body>
+    <header>
+        <div class="row header-main">
+            <h1 class="header-text-main">CD</h1>
+        </div>
+    </header>
+
+    <p> This Page is under construction.
+        <br> Apologize for any inconvenience</p>
+
+    <a href="{{url_for('go_chef')}}">Go to the Templated Chef Page</a>
+    <br>
+    <a href="{{url_for('go_recipe')}}">Go to the Templated Recipe Page</a>
+</body>
+
+</html>

@@ -1,0 +1,398 @@
+/*
+Orange color: #e67e22
+
+*/
+
+/* ----------------------------------------------- */
+/* REUSABLE COMPONENTS */
+/* ----------------------------------------------- */
+.row {
+    max-width: 1140px;
+    margin: 0 30px;
+}
+
+.box {
+    padding: 1%;
+}
+
+.ingredients {
+    text-align: center;
+}
+
+
+.is-supplementalPostContentLoaded, .supplementalPostContent {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s,opacity .3s 0s;
+}
+
+/*
+.supplementalPostContent {
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: visibility 0s linear .3s,opacity .3s 0s;
+    transition: visibility 0s linear .3s,opacity .3s 0s;
+}
+*/
+
+.responsesStream-editor {
+    margin-top: 5px;
+    padding: 0 20px;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.03);
+    box-shadow: 0 1px 4px rgba(0,0,0,.03);
+}
+
+.cardChromeless {
+    background: #fff;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    border: 1px solid rgba(0,0,0,.09);
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.u-backgroundGrayLightest {
+    background: #fafafa!important;
+}
+
+.u-padding {
+    padding: 0!important;
+}
+
+.button {
+    border-width: 0;
+    padding: 0;
+    text-align: left;
+    vertical-align: baseline;
+    white-space: normal;
+    display: inline-block;
+    position: relative;
+    color: rgba(0,0,0,.54);
+    background: rgba(0,0,0,0);
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    vertical-align: bottom;
+    white-space: nowrap;
+    text-rendering: auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: medium-content-sans-serif-font,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+    letter-spacing: 0;
+    font-weight: 400;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-feature-settings: "liga" on;
+}
+
+a {
+    -webkit-tap-highlight-color: transparent;
+    color: inherit;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+
+
+button {
+    overflow: visible;
+    border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+    border-style: solid;
+    border-width: 1px;
+    padding: 1px 7px 2px;
+    -webkit-tap-highlight-color: transparent;
+    color: inherit;
+    font: inherit;
+    margin: 0;
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+    background-color: buttonface;
+    box-sizing: border-box;
+    border-image: initial;
+    text-indent: 0px;
+    text-shadow: none;
+    word-spacing: normal;
+    -webkit-writing-mode: horizontal-tb !important;
+}
+
+input {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+    text-indent: 0px;
+    text-shadow: none;
+    word-spacing: normal;
+}
+
+
+.svgIcon {
+    -webkit-transition: .1s background-color,.1s border-color,.1s color,.1s fill;
+    transition: .1s background-color,.1s border-color,.1s color,.1s fill;
+}
+
+u-borderBottomLightest {
+    border-bottom: 1px solid rgba(0,0,0,.05)!important;
+}
+
+div {
+    display: block;
+}
+
+Style Attribute {
+    display: block;
+    visibility: visible;
+}
+
+:root {
+    --x-height-multiplier: 0;
+    --baseline-multiplier: 0;
+}
+
+
+.u-clearfix:after, .u-clearfix:before {
+    display: table;
+    content: " ";
+}
+
+.u-clearfix:after {
+    clear: both;
+}
+
+.u-clearfix:after, .u-clearfix:before {
+    display: table;
+    content: " ";
+}
+
+.u-marginLeft {
+    margin-left: 20px!important;
+}
+
+.streamItemConversation {
+    margin-top: 20px;
+}
+
+.streamItemConversationItem {
+    padding: 15px 20px;
+}
+
+.postArticle.postArticle--short:not(.postArticle--letter) {
+    padding-top: 5px;
+    padding-bottom: 0;
+}
+
+.postArticle {
+    position: relative;
+}
+
+.postArticle--short, .postArticle-content {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    position: relative;
+    clear: both;
+}
+
+.postArticle--short, .postArticle-content {
+    cursor: pointer;
+}
+
+.u-paddingTop {
+    padding-top: 5px!important;
+}
+.u-marginBottom {
+    margin-bottom: 15px!important;
+}
+
+.section {
+    padding-bottom: 5px;
+}
+
+.postMetaInline {
+    font-family: "Segoe UI","Open Sans","Helvetica Neue",sans-serif;
+    letter-spacing: 0;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    color: rgba(0,0,0,.54);
+    fill: rgba(0,0,0,.54);
+}
+.u-floatLeft {
+    float: left!important;
+}
+
+.u-flexCenter {
+    display: -webkit-box!important;
+    display: -webkit-flex!important;
+    display: -ms-flexbox!important;
+    display: flex!important;
+    -webkit-box-align: center!important;
+    -webkit-align-items: center!important;
+    -ms-flex-align: center!important;
+    align-items: center!important;
+}
+
+.u-flex {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+.u-noWrapWithEllipsis {
+    white-space: nowrap!important;
+    text-overflow: ellipsis!important;
+    overflow: hidden!important;
+}
+    
+    
+/*------HEADINGS------*/
+h1 {
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+}
+
+h2 {
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    font-size: 20px;
+}
+
+h3 {
+    color: #222;
+    font-weight: 600;
+    line-height: 1.3;
+    font-size: 25px; 
+    position: static;
+    margin-bottom: 5px;
+}
+
+h4 {
+    color: #222;
+    font-weight: 600;
+    font-size: 25px;
+    text-align: center;
+    position: static;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+h5 {
+    color: #222;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    padding: 0em;
+    background-color: #F89406;
+}
+
+/*------COSMETICS------*/
+
+/*section:before {
+    display: block;
+    height: 40px;
+    content: " ";
+    width: 100%;
+    background-color: darkslategrey;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    position: static;
+}*/
+
+section:before {
+    display: block;
+    height: 3px;
+    content: " ";
+    width: 100%;
+    background-color: orange;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    position: static;
+}
+
+
+
+
+/* ----------------------------------------------- */
+/* HEADER */
+/* ----------------------------------------------- */
+
+header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)), url(FOOD.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 30vh; 
+}
+
+/* ----------------------------------------------- */
+/* FOOTER */
+/* ----------------------------------------------- */
+
+footer {
+    padding: 0em;
+    color: white;
+    background-color: #F89406;
+    clear: left;
+    text-align: center;
+    display: block;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* ----------------------------------------------- */
+/* COMMENT SECTION */
+/* ----------------------------------------------- */
+
+/*input {
+    text-align: left;
+    background-color: #ecf0f1;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 200;
+    padding: 10px 0;
+    width: 500px auto;
+    transition: border 0.5s;
+}
+
+.btn {
+    border: 2px solid transparent;
+    background: grey;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 2px;
+    padding: 10px 0;
+    text-decoration: none;
+    text-shadow: none;
+    border-radius: 3px;
+    box-shadow: none;
+    transition: 0.25s;
+    display: block;
+    width: 250px auto;
+    margin: 5px auto;
+    text-align: center;
+}*/
+
+/*.comment-form{
+    text-align: center;
+    padding 2em 2em 2em;
+}
+
+
+.control-group {
+    margin-bottom: 10px;
+}*/
