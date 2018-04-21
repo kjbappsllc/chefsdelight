@@ -7,6 +7,7 @@ import requests
 from io import BytesIO
 import time
 import math
+import random
 
 ##Login Email: vbanbridge0@com.com
 ##Login Password: rWYkxT0T
@@ -37,7 +38,8 @@ def home():
                                             from (select recipe_id, avg(rating) as avgRating, count(*) as numRatings \
                                                         from (select * from recipes join recipe_ratings on recipes.recipe_id = recipe_ratings.recipe_id) \
                                                         group by recipe_id) \
-                                            natural join recipes natural join chefs')
+                                            natural join recipes natural join chefs \
+                                            order by avgRating desc')
     for row in rows:
         avgRating = row["avgRating"] 
         avgRating = math.floor(avgRating + 0.5)
@@ -45,10 +47,12 @@ def home():
         recipe_row["avgRating"] = avgRating
         recipes.append(recipe_row)
     
-    print(recipes[0])
-    perColumn = math.floor(len(recipes) / 3)
-    leftOvers = len(recipes) - perColumn * 3
-    return render_template('main.html', recipes=recipes, perColumn=perColumn, leftOvers=leftOvers)
+    popular_recipes = [recipes[i] for i in range(10)]
+    reg_recipes = [recipes[i] for i in range(10, len(recipes))]
+    perColumn = math.floor(len(reg_recipes) / 3)
+    leftOvers = len(reg_recipes) - perColumn * 3
+    random.shuffle(reg_recipes)
+    return render_template('main.html', popular=popular_recipes, recipes=reg_recipes, perColumn=perColumn, leftOvers=leftOvers)
 
 @app.route("/login", methods=['POST'])
 def do_login():
