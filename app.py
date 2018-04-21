@@ -33,10 +33,19 @@ def redirection(userType = None):
 def home():
     db = get_db()
     recipes = []
-    rows = db.execute('select * from recipes natural join chefs')
+    rows = db.execute('select * \
+                                            from (select recipe_id, avg(rating) as avgRating, count(*) as numRatings \
+                                                        from (select * from recipes join recipe_ratings on recipes.recipe_id = recipe_ratings.recipe_id) \
+                                                        group by recipe_id) \
+                                            natural join recipes natural join chefs')
     for row in rows:
-        recipes.append(dict(row))
-
+        avgRating = row["avgRating"] 
+        avgRating = math.floor(avgRating + 0.5)
+        recipe_row = dict(row)
+        recipe_row["avgRating"] = avgRating
+        recipes.append(recipe_row)
+    
+    print(recipes[0])
     perColumn = math.floor(len(recipes) / 3)
     leftOvers = len(recipes) - perColumn * 3
     return render_template('main.html', recipes=recipes, perColumn=perColumn, leftOvers=leftOvers)

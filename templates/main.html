@@ -34,12 +34,13 @@
                         <div class="image-text-content">
                             <div style="margin-bottom:  10px">
                                 <h3 style="margin-bottom: 5px">{{recipes[i]["name"]}}</h3>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
+
+                                {% for x in range(5) %} {% if x >= recipes[i]["avgRating"] %}
                                 <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span style="font-size:  65%; font-family: 'Roboto'; margin-left:  5px;">10 reviews</span>
+                                {%else%}
+                                <span class="fa fa-star checked"></span>
+                                {% endif %} {% endfor %}
+                                <span style="font-size:  65%; font-family: 'Roboto'; margin-left:  5px;">{{recipes[i]["numRatings"]}} reviews</span>
                             </div>
                             <p>{{recipes[i]["description"]}}</p>
                             <h4 style="margin-top:  20px">By:
@@ -58,12 +59,13 @@
                         <div class="image-text-content">
                             <div style="margin-bottom:  10px">
                                 <h3 style="margin-bottom: 5px">{{recipes[i]["name"]}}</h3>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
+
+                                {% for x in range(5) %} {% if x >= recipes[i]["avgRating"] %}
                                 <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span style="font-size:  65%; font-family: 'Roboto'; margin-left:  5px;">10 reviews</span>
+                                {%else%}
+                                <span class="fa fa-star checked"></span>
+                                {% endif %} {% endfor %}
+                                <span style="font-size:  65%; font-family: 'Roboto'; margin-left:  5px;">{{recipes[i]["numRatings"]}} reviews</span>
                             </div>
                             <p>{{recipes[i]["description"]}}</p>
                             <h4 style="margin-top:  20px">By:
@@ -82,12 +84,13 @@
                         <div class="image-text-content">
                             <div style="margin-bottom:  10px">
                                 <h3 style="margin-bottom: 5px">{{recipes[i]["name"]}}</h3>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
+
+                                {% for x in range(5) %} {% if x >= recipes[i]["avgRating"] %}
                                 <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span style="font-size:  65%; font-family: 'Roboto'; margin-left:  5px;">10 reviews</span>
+                                {%else%}
+                                <span class="fa fa-star checked"></span>
+                                {% endif %} {% endfor %}
+                                <span style="font-size:  65%; font-family: 'Roboto'; margin-left:  5px;">{{recipes[i]["numRatings"]}} reviews</span>
                             </div>
                             <p>{{recipes[i]["description"]}}</p>
                             <h4 style="margin-top:  20px">By:
