@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/reuseable.css') }}">
     <link rel="stylesheet" type="text/css" media="screen" href="{{url_for('static', filename='styles/main.css')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -18,12 +19,89 @@
         </div>
     </header>
 
-    <p> This Page is under construction.
-        <br> Apologize for any inconvenience</p>
-
-    <a href="{{url_for('go_chef')}}">Go to the Templated Chef Page</a>
-    <br>
-    <a href="{{url_for('go_recipe')}}">Go to the Templated Recipe Page</a>
+    <div class="container">
+        <div class="content-row">
+            <h2>Chef Created Recipes</h2>
+            <p>Chef's from all around the world share their creative dishes that you can make at home!</p>
+            <div class="orange-hr"></div>
+        </div>
+        <div class="content-row">
+            <div class="chef-recipe-container">
+                <div class="image-column">
+                    {% for i in range(perColumn) %}
+                    <div class="image-container">
+                        <img src={{recipes[i][ "imagesrc"]}} />
+                        <div class="image-text-content">
+                            <div style="margin-bottom:  10px">
+                                <h3 style="margin-bottom: 5px">{{recipes[i]["name"]}}</h3>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span style="font-size:  65%; font-family: 'Roboto'; margin-left:  5px;">10 reviews</span>
+                            </div>
+                            <p>{{recipes[i]["description"]}}</p>
+                            <h4 style="margin-top:  20px">By:
+                                <a href="rhodes.edu">
+                                    <strong>{{recipes[i]["fname"]}} {{recipes[i]["lname"]}}</strong>
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="image-column">
+                    {% for i in range(perColumn, perColumn * 2) %}
+                    <div class="image-container">
+                        <img src={{recipes[i][ "imagesrc"]}} />
+                        <div class="image-text-content">
+                            <div style="margin-bottom:  10px">
+                                <h3 style="margin-bottom: 5px">{{recipes[i]["name"]}}</h3>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span style="font-size:  65%; font-family: 'Roboto'; margin-left:  5px;">10 reviews</span>
+                            </div>
+                            <p>{{recipes[i]["description"]}}</p>
+                            <h4 style="margin-top:  20px">By:
+                                <a href="rhodes.edu">
+                                    <strong>{{recipes[i]["fname"]}} {{recipes[i]["lname"]}}</strong>
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="image-column">
+                    {% for i in range(perColumn * 2, perColumn * 3 + leftOvers) %}
+                    <div class="image-container">
+                        <img src={{recipes[i][ "imagesrc"]}} />
+                        <div class="image-text-content">
+                            <div style="margin-bottom:  10px">
+                                <h3 style="margin-bottom: 5px">{{recipes[i]["name"]}}</h3>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span style="font-size:  65%; font-family: 'Roboto'; margin-left:  5px;">10 reviews</span>
+                            </div>
+                            <p>{{recipes[i]["description"]}}</p>
+                            <h4 style="margin-top:  20px">By:
+                                <a href="rhodes.edu">
+                                    <strong>{{recipes[i]["fname"]}} {{recipes[i]["lname"]}}</strong>
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

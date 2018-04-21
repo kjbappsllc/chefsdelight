@@ -17,7 +17,6 @@ header {
   
 .header-text {
   font-size: 250%;
-  margin-top: 30px;
   float: left;
   font-family: 'Lobster';
   color: #f89406;
@@ -28,12 +27,20 @@ header {
   height: inherit;
 }
 
+.header-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
 .header-form {
   padding: 6vh 0;
 }
 
 .sign-in {
-  float: right;
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
   padding: 0;
   padding-right: 30px;
   height: inherit;

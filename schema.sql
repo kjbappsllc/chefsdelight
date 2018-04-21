@@ -24,7 +24,8 @@ CREATE TABLE recipes (
     name VARCHAR(40) NOT NULL,
     recipe_id INTEGER NOT NULL,
     imagesrc VARCHAR(50),
-    instructions VARCHAR(500),
+    description VARCHAR(500),
+    instructions VARCHAR(750),
     PRIMARY KEY(recipe_id)
 );
 DROP TABLE IF EXISTS ingredients;

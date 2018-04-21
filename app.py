@@ -1,4 +1,4 @@
-from flask import Flask, g, flash, redirect, render_template, request, session, abort, jsonify
+from flask import Flask, g, flash, redirect, render_template, request, session, abort, jsonify, url_for
 import os
 import xlrd
 import sqlite3
@@ -6,6 +6,7 @@ from PIL import Image
 import requests
 from io import BytesIO
 import time
+import math
 
 ##Login Email: vbanbridge0@com.com
 ##Login Password: rWYkxT0T
@@ -18,7 +19,7 @@ loggedInSession = 'LOGGED_IN'
 
 ##ROUTES
 @app.route("/")
-def home(userType = None):
+def redirection(userType = None):
     ut = 'user'
     if userType:
         ut = userType
@@ -26,7 +27,19 @@ def home(userType = None):
     if not session.get(loggedInSession):
         return render_template('login.html', type=ut)
     else:
-        return render_template('main.html')
+        return home()
+
+@app.route("/home")
+def home():
+    db = get_db()
+    recipes = []
+    rows = db.execute('select * from recipes natural join chefs')
+    for row in rows:
+        recipes.append(dict(row))
+
+    perColumn = math.floor(len(recipes) / 3)
+    leftOvers = len(recipes) - perColumn * 3
+    return render_template('main.html', recipes=recipes, perColumn=perColumn, leftOvers=leftOvers)
 
 @app.route("/login", methods=['POST'])
 def do_login():
@@ -40,7 +53,7 @@ def do_login():
     print(PASSWORD)
 
     if not EMAIL or not PASSWORD:
-        return home()
+        return redirection()
 
     try:
         rows = db.execute("select * from master_users where email=?",[EMAIL])
@@ -51,11 +64,11 @@ def do_login():
             session[loggedInSession] = True
         else:
             flash('Incorrect username or password!')
-        return home()
+        return redirection()
 
     except sqlite3.Error or NameError or TypeError:
         flash('Incorrect username or password!')
-        return home()
+        return redirection()
     
 @app.route("/sign-up", methods=['POST'])
 def do_signup():
@@ -82,7 +95,7 @@ def do_signup():
             db.execute('insert into chefs (email, lname, fname, restaurant) values (?, ?, ?, ?)', [EMAIL, LNAME, FNAME, RESTAURANT])
             db.commit()
         except sqlite3.Error:
-            return home(str(request.form['view']))
+            return redirection(str(request.form['view']))
 
     else:
         EMAIL = str(request.form['email'])
@@ -94,10 +107,10 @@ def do_signup():
             db.execute('insert into users (email, username) values (?, ?)', [EMAIL, USERNAME])
             db.commit()
         except sqlite3.Error:
-            return home(str(request.form['view']))
+            return redirection(str(request.form['view']))
     
     session[loggedInSession] = True
-    return home(str(request.form['view']))
+    return redirection(str(request.form['view']))
 
 @app.route("/chef")
 def go_chef():
@@ -186,8 +199,8 @@ def populateDB():
     for i in range(1, sheet.nrows):
         response = images[i-1]["largeImageURL"]
         print("generated Image ", i)
-        db.execute("insert into recipes (email, name, recipe_id, imagesrc, instructions) values (?, ?, ?, ?, ?)", 
-        [sheet.row(i)[0].value, sheet.row(i)[1].value, sheet.row(i)[2].value, response, sheet.row(i)[3].value])
+        db.execute("insert into recipes (email, name, recipe_id, imagesrc, description, instructions) values (?, ?, ?, ?, ?, ?)", 
+        [sheet.row(i)[0].value, sheet.row(i)[1].value, sheet.row(i)[2].value, response, sheet.row(i)[3].value, sheet.row(i)[4].value])
     db.commit()
 
     ##ingredients

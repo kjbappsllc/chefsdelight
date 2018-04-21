@@ -1,78 +1,89 @@
 /* INITIAL SETUP */
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-  }
-  
-  *:focus {
-    outline: none;
-  }
-  
-  .clearfix {
-    zoom: 1;
-  }
-  .clearfix:after {
-    content: '.';
-    clear: both;
-    display: block;
-    height: 0;
-    visibility: hidden;
-  }
-  
-  /* PARENT STYLES */
-  html,
-  body {
-    font-family: 'Roboto';
-    color: #555;
-    font-size: 20px;
-    text-rendering: optimizeLegibility;
-    overflow-x: hidden;
-  }
-  
-  /* REUSABLE STYLES */
-  .row {
-    max-width: 1140px;
-    margin: 0 auto;
-  }
-  
-  .btn {
-    border: 2px solid transparent;
-    background: #f89406;
-    color: #ffffff;
-    font-size: 16px;
-    line-height: 25px;
-    padding: 10px 0;
-    text-decoration: none;
-    text-shadow: none;
-    border-radius: 3px;
-    box-shadow: none;
-    transition: 0.25s;
-    display: block;
-    width: 250px;
-    margin: 0 auto;
-  }
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 
-  header {
-    height: 12vh;
-    background-color: #f89406;
-  }
-  
-  .header-text-main {
-    font-size: 220%;
-    margin-top: 12px;
-    float: left;
-    font-family: 'Lobster';
-    color: #fff;
-    margin-left: 15px;
-  }
-  
-  .header-main {
-    height: inherit;
-  }
-  
-  section {
-    padding-bottom: 30px;
-    margin: 0 auto;
-    display: block;
+*:focus {
+  outline: none;
+}
+
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after {
+  content: '.';
+  clear: both;
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+/* PARENT STYLES */
+html,
+body {
+  font-family: 'Roboto';
+  color: #555;
+  font-size: 20px;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* REUSABLE STYLES */
+.row {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.content-row {
+  display: flex;
+  max-width: 1200px;
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+  flex-direction: column;
+}
+
+.btn {
+  border: 2px solid transparent;
+  background: #f89406;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 25px;
+  padding: 10px 0;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 3px;
+  box-shadow: none;
+  transition: 0.25s;
+  display: block;
+  width: 250px;
+  margin: 0 auto;
+}
+
+header {
+  height: 12vh;
+  background-color: #f89406;
+}
+
+.header-text-main {
+  font-size: 220%;
+  float: left;
+  font-family: 'Lobster';
+  color: #fff;
+  margin-left: 15px;
+}
+
+.header-main {
+  height: inherit;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+section {
+  padding-bottom: 30px;
+  margin: 0 auto;
+  display: block;
 }
