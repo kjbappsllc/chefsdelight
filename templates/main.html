@@ -21,6 +21,27 @@
 
     <div class="container">
         <div class="content-row">
+            <h2>Popular Recipes</h2>
+            <p>These recipes were the most popular among our users. Give some of them a try!</p>
+            <div class="orange-hr"></div>
+        </div>
+        <div class="content-row">
+            <div class="popular-recipe-container">
+                {% for recipe in popular%}
+                <div class="popular-recipe-content">
+                    <div class="popular-recipe">
+                        <img src={{recipe["imagesrc"]}}/>
+                    </div>
+                    <h4 style="margin-top:  20px">By:
+                        <a href="rhodes.edu">
+                            <strong>{{recipe["fname"]}} {{recipe["lname"]}}</strong>
+                        </a>
+                    </h4>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="content-row">
             <h2>Chef Created Recipes</h2>
             <p>Chef's from all around the world share their creative dishes that you can make at home!</p>
             <div class="orange-hr"></div>

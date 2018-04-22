@@ -10,7 +10,7 @@ body {
   width: 100%;
   align-items: center;
   flex-direction: column;
-  padding-top: 24px;
+  padding-top: 30px;
 }
 
 .chef-recipe-container {
@@ -41,6 +41,42 @@ body {
   border-style: solid;
   border-width: 1px;
   margin-top: 10px;
+}
+
+.popular-recipe-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+
+.popular-recipe {
+  display: flex;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: bisque;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 20px;
+  overflow: hidden;
+  margin-bottom: 5px;
+  background-color: #3d3d3d;
+}
+
+.popular-recipe-content {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  padding-right: 20px;
+  padding-left: 20px;
+  align-items: center
+}
+
+.popular-recipe img {
+  width: 100%;
+  height: 100%;
+  flex: 1;
 }
 
 .image-column img {
@@ -87,6 +123,13 @@ h3 {
 
 .image-text-content h4 {
   font-size: 70%;
+  font-weight: 100;
+  color: black;
+  align-self: center;
+}
+
+.popular-recipe-content h4 {
+  font-size: 60%;
   font-weight: 100;
   color: black;
   align-self: center;

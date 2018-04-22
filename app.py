@@ -9,9 +9,6 @@ import time
 import math
 import random
 
-##Login Email: vbanbridge0@com.com
-##Login Password: rWYkxT0T
-
 app = Flask(__name__)
 imagesAPIPoint = "https://pixabay.com/api/?key=8572181-d7de3a9d607dcb04af86261ab&q=food&per_page=200"
 binary = BytesIO()
@@ -52,6 +49,8 @@ def home():
     perColumn = math.floor(len(reg_recipes) / 3)
     leftOvers = len(reg_recipes) - perColumn * 3
     random.shuffle(reg_recipes)
+
+    print(popular_recipes[0])
     return render_template('main.html', popular=popular_recipes, recipes=reg_recipes, perColumn=perColumn, leftOvers=leftOvers)
 
 @app.route("/login", methods=['POST'])
