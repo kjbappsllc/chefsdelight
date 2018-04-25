@@ -14,6 +14,7 @@ imagesAPIPoint = "https://pixabay.com/api/?key=8572181-d7de3a9d607dcb04af86261ab
 binary = BytesIO()
 
 loggedInSession = 'LOGGED_IN'
+userKey = 'USER'
 
 ##ROUTES
 @app.route("/")
@@ -73,6 +74,7 @@ def do_login():
         
         if PASSWORD == user_row['password'] and EMAIL == user_row['email']:
             session[loggedInSession] = True
+            session[userKey] = EMAIL
         else:
             flash('Incorrect username or password!')
         return redirection()
@@ -121,6 +123,7 @@ def do_signup():
             return redirection(str(request.form['view']))
     
     session[loggedInSession] = True
+    session[userKey] = EMAIL
     return redirection(str(request.form['view']))
 
 @app.route("/chef/<chef>")
@@ -132,6 +135,11 @@ def go_chef(chef):
 def go_recipe(recipe):
     print(recipe)
     return render_template('recipe-page.html')
+
+@app.route("/profile/")
+def go_profile():
+    print(session.get(userKey))
+    return render_template('profile-page.html')
 
 ##ROUTE FUNCTIONALITY
 @app.route("/handleSwitch", methods=['POST'])
