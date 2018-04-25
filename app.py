@@ -70,15 +70,14 @@ def do_login():
     try:
         rows = db.execute("select * from master_users where email=?",[EMAIL])
         user_row = rows.fetchone()
-        print(str(dict(user_row)))
-
+        
         if PASSWORD == user_row['password'] and EMAIL == user_row['email']:
             session[loggedInSession] = True
         else:
             flash('Incorrect username or password!')
         return redirection()
 
-    except sqlite3.Error or NameError or TypeError:
+    except (sqlite3.Error, NameError, TypeError) as e:
         flash('Incorrect username or password!')
         return redirection()
     
@@ -124,12 +123,14 @@ def do_signup():
     session[loggedInSession] = True
     return redirection(str(request.form['view']))
 
-@app.route("/chef")
-def go_chef():
+@app.route("/chef/<chef>")
+def go_chef(chef):
+    print(chef)
     return render_template('chef-page.html')
 
-@app.route("/recipe/")
-def go_recipe():
+@app.route("/recipe/<recipe>")
+def go_recipe(recipe):
+    print(recipe)
     return render_template('recipe-page.html')
 
 ##ROUTE FUNCTIONALITY

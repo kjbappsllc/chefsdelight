@@ -30,10 +30,12 @@
                 {% for recipe in popular%}
                 <div class="popular-recipe-content">
                     <div class="popular-recipe">
-                        <img src={{recipe["imagesrc"]}}/>
+                        <a href="{{url_for('go_recipe', recipe=recipe["recipe_id"])}}">
+                            <img src={{recipe[ "imagesrc"]}}/>
+                        </a>
                     </div>
                     <h4 style="margin-top:  20px">By:
-                        <a href="rhodes.edu">
+                        <a href="{{url_for('go_chef', chef=recipe["email"])}}">
                             <strong>{{recipe["fname"]}} {{recipe["lname"]}}</strong>
                         </a>
                     </h4>
@@ -51,7 +53,9 @@
                 <div class="image-column">
                     {% for i in range(perColumn) %}
                     <div class="image-container">
-                        <img src={{recipes[i][ "imagesrc"]}} />
+                        <a href="{{url_for('go_recipe', recipe=recipes[i]["recipe_id"])}}">
+                            <img src={{recipes[i][ "imagesrc"]}} />
+                        </a>
                         <div class="image-text-content">
                             <div style="margin-bottom:  10px">
                                 <h3 style="margin-bottom: 5px">{{recipes[i]["name"]}}</h3>
@@ -65,7 +69,7 @@
                             </div>
                             <p>{{recipes[i]["description"]}}</p>
                             <h4 style="margin-top:  20px">By:
-                                <a href="rhodes.edu">
+                                <a href="{{url_for('go_chef', chef=recipes[i]["email"])}}">
                                     <strong>{{recipes[i]["fname"]}} {{recipes[i]["lname"]}}</strong>
                                 </a>
                             </h4>
@@ -76,7 +80,9 @@
                 <div class="image-column">
                     {% for i in range(perColumn, perColumn * 2) %}
                     <div class="image-container">
-                        <img src={{recipes[i][ "imagesrc"]}} />
+                        <a href="{{url_for('go_recipe', recipe=recipes[i]["recipe_id"])}}">
+                            <img src={{recipes[i][ "imagesrc"]}} />
+                        </a>
                         <div class="image-text-content">
                             <div style="margin-bottom:  10px">
                                 <h3 style="margin-bottom: 5px">{{recipes[i]["name"]}}</h3>
@@ -90,7 +96,7 @@
                             </div>
                             <p>{{recipes[i]["description"]}}</p>
                             <h4 style="margin-top:  20px">By:
-                                <a href="rhodes.edu">
+                                <a href="{{url_for('go_chef', chef=recipes[i]["email"])}}">
                                     <strong>{{recipes[i]["fname"]}} {{recipes[i]["lname"]}}</strong>
                                 </a>
                             </h4>
@@ -101,7 +107,9 @@
                 <div class="image-column">
                     {% for i in range(perColumn * 2, perColumn * 3 + leftOvers) %}
                     <div class="image-container">
-                        <img src={{recipes[i][ "imagesrc"]}} />
+                        <a href="{{url_for('go_recipe', recipe=recipes[i]["recipe_id"])}}">
+                            <img src={{recipes[i][ "imagesrc"]}} />
+                        </a>
                         <div class="image-text-content">
                             <div style="margin-bottom:  10px">
                                 <h3 style="margin-bottom: 5px">{{recipes[i]["name"]}}</h3>
@@ -115,7 +123,7 @@
                             </div>
                             <p>{{recipes[i]["description"]}}</p>
                             <h4 style="margin-top:  20px">By:
-                                <a href="rhodes.edu">
+                                <a href="{{url_for('go_chef', chef=recipes[i]["email"])}}">
                                     <strong>{{recipes[i]["fname"]}} {{recipes[i]["lname"]}}</strong>
                                 </a>
                             </h4>
