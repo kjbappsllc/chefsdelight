@@ -1,11 +1,170 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-    <h1>JIMMY'S PROFILE PAGE</h1>
-</body>
-</html>
+
+
+
+
+
+
+
+
+<html class="gr__localhost">
+    <head>
+        <title>Chef's Delight Personal Profile</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   
+    
+    
+        <link rel="stylesheet" href="profile.css" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/r.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/reuseable.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/profile.css') }}">
+        <link rel="stylesheet" type="text/css" href="profile.css">
+    
+
+
+    
+    
+        <style>
+            html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+        </style>
+        <link type="text/css" rel="stylesheet" href="chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/content.css">
+        
+        <script>
+            if(str(request.form['view']) == 'chef'):
+                FNAME = str(request.form['first-name'])
+                LNAME = str(request.form['last-name'])
+                RESTAURANT = str(request.form['restaurant'])
+                EMAIL = str(request.form['email'])
+                PASSWORD = str(request.form['password'])
+            else:
+                EMAIL = str(request.form['email'])
+                PASSWORD = str(request.form['password'])
+                USERNAME = str(request.form['username'])
+        </script>
+    
+    
+    </head>
+    
+    <body class="w3-light-grey" data-gr-c-s-loaded="true">
+        <header>
+            <div class="row header-main">
+                <h1 class="header-text-main">CD</h1>
+                <a href="{{url_for('go_profile')}}">
+                    <img src="{{url_for('static', filename='images/userImage.png')}}">
+                </a>
+            </div>
+        </header>
+
+        <!-- Page Container -->
+        <div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+            <!-- The Grid -->
+            <div class="w3-row-padding">
+  
+                <!-- Left Column -->
+                <div class="w3-third">
+    
+                    <div class="w3-white w3-text-grey w3-card-4">
+                        <div class="w3-display-container">
+                            <img src="userImage.png" style="width:100%" alt=" ">
+                            <div class="w3-display-bottomleft w3-container w3-text-black">
+                                <h3="">Here's your Chef's Delight Profile Page</h3="">
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        <div class="w3-container">         
+                            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i> EMAIL
+                            </p>
+                            <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i> </p>RESTAURANT
+                            
+                            <script>
+                                if(str(request.form['view']) == 'chef'):
+                                    CHEF = "CHEF"
+                                else:
+                                    CHEF =" "
+                            </script>
+                            <p><i class="fa fa-check fa-fw w3-margin-right w3-large w3-text-teal"></i>CHEF</p>
+                                <br>
+                        </div>
+                    </div><br>
+
+    <!-- End Left Column -->
+                </div>
+
+    <!-- Right Column -->
+    <div class="w3-twothird">
+    
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Reasturant Work Experience</h2>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>CookingExperience</b></h5>
+         <form action="/action_page.php">
+             Type of Experience: <input type="text" name="Experience" value="Please enter your work experience"><br>
+             Employers: <input type="text" name="" value="Pleaes list current and previous employers"><br>
+             <input type="submit" value="Submit">
+             <script>
+                if (type = "submit" & value="Submit")
+                    document.getElementById("demo").innerHTML = "Hello Dolly.";
+             
+             </script>
+             
+            </form>
+
+            <p>Click the "Submit" button and the form-data will be sent to a page on the server called "/action_page.php".</p>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Serving Experience </b></h5>
+          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Mar 2012 - Dec 2014</h6>
+          <p>Worked as a wieghter for two years at multiple diffrent eateries</p>
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Dishwasher</b></h5>
+          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jun 2010 - Mar 2012</h6>
+          <p>Washed dishes a three diffrent establishments for two years </p><br>
+        </div>
+      </div>
+
+      <div class="w3-container w3-card w3-white">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Education</h2>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Rhodes College</b></h5>
+          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Forever</h6>
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>University of Washington</b></h5>
+          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2013 - 2015</h6>
+          <p>Master Degree</p>
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Rhodes College</b></h5>
+          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2010 - 2013</h6>
+          <p>Bachelor Degree</p><br>
+        </div>
+      </div>
+
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+  <!-- End Page Container -->
+</div>
+
+
+
+
+<div id="js-atavi-extension-install"></div></body></html>
