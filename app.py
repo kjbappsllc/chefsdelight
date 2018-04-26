@@ -129,6 +129,7 @@ def do_signup():
 @app.route("/chef/<chef>")
 def go_chef(chef):
     print(chef)
+    print(session.get(userKey))
     return render_template('chef-page.html')
 
 @app.route("/recipe/<recipe>")

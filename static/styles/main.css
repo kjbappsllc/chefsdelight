@@ -16,6 +16,10 @@ body {
   margin-right: 35px;
 }
 
+.header-main a {
+  text-decoration: none;
+}
+
 .container {
   display: flex;
   width: 100%;
