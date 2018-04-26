@@ -170,7 +170,7 @@
                 <div class="image-column">
                     {% for i in range(perColumn * 2, perColumn * 3 + leftOvers) %}
                     <div class="image-container">
-                        <a href="{{url_for('go_recipe', recipe=recipes[i][" recipe_id "])}}">
+                        <a href="{{url_for('go_recipe', recipe=recipes[i]["recipe_id"])}}">
                             <img src={{recipes[i][ "imagesrc"]}} />
                         </a>
                         <div class="image-text-content">
