@@ -1,0 +1,131 @@
+
+.row {
+    max-width: 1140px;
+    margin: 0 30px;
+}
+
+.box {
+    padding: 1%;
+}
+
+.ingredients {
+    text-align: center;
+}
+
+
+.is-supplementalPostContentLoaded, .supplementalPostContent {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s,opacity .3s 0s;
+}
+
+
+.user {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.chef {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+}
+
+
+.title {
+  color: lightsalmon;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+
+div {
+    display: block;
+}
+
+Style Attribute {
+    display: block;
+    visibility: visible;
+}
+
+footer {
+    padding: 0em;
+    color: white;
+    background-color: #F89406;
+    clear: left;
+    text-align: center;
+    display: block;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.header-main img {
+  width: 55px;
+  height: 55px;
+  border-color: white;
+  border-width: 2px;
+  border-style: solid;
+  padding: 5px;
+  border-radius: 50%;
+  margin-right: 35px;
+}
+
+.orange-hr {
+  border-color: #f89406;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 10px;
+  margin: 20px 0;
+  align-self: center;
+  width: 20%;
+}
+
+/* Text Styles */
+h2 {
+  font-family: 'Roboto';
+  font-size: 125%;
+  color: #3d3d3d;
+  font-weight: 200;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-family: 'Roboto';
+  font-size: 70%;
+  color: #3d3d3d;
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+
+
+
+
