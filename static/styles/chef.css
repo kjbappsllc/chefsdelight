@@ -1,52 +1,245 @@
 
+/*Header*/ 
+.header-row{
+    background-color: orange;
+    font-size: 180%;
+    color: azure;
+    font-family: lobster;
+    width: 100%;
+    flex: 0.2;
+}
+
+header {
+    height: 60vh;
+    background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.7)), url("https://picsum.photos/900/600");
+    background-size: cover;
+    background-position: center;
+}
+
+.header-content-text-container {
+    font-size: 190%;
+    color: white;
+    display: flex;
+    flex: 0.8;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: transparent;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+
+.header-content-text-container h1 {
+    font-family: lobster;
+}
+
+.header-content-text-container h4 {
+    font-size: 60%;
+    margin-top: 5px;
+}
+.header-content-text-container h5 {
+    font-size: 40%;
+    margin-top: 5px;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: transparent;
+}
+
+/***/
+html,
+body{
+    font-family: Roboto;
+    color: #555;
+    font-size: 15px;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+}
+
+
+/* REUSABLE STYLES */
+.row {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
 /*Body*/
 
-.chefandres{
-    font-size: 250%;
-    font-family: cursive; 
+
+.chef-rating{
+    display: flex
+   
 }
 
-.chefemail{
-    font-family: sans-serif;
-    font-size: 90%;;
-    padding-bottom: 10px;
-    padding-left: 35px;
-    padding-top: 20px;
+/* Star shading code*/
+.checked {
+    color: orange;
 }
 
-.chefrating{
-    font-family: fantasy;
-    padding-top: 60px;
+.txt-center {
+    text-align: center;
+}
+.hide {
+    display: none;
 }
 
+.clear {
+    float: none;
+    clear: both;
+}
 
-.chefpic{
-    padding-left: 450px;
+.rating {
+    width: 90px;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: center;
+    position: relative;
     
 }
 
-.dish{
-    font-size: 200%;
-    padding-bottom: 15px;
-    font-family: 'Shadows Into Light', cursive;
+.rating > label {
+    float: right;
+    display: inline;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    width: 1.1em;
+    cursor: pointer;
+    color: #000;
+}
+
+.rating > label:hover,
+.rating > label:hover ~ label,
+.rating > input.radio-btn:checked ~ label {
+    color: #ffcc00;
+;
 }
 
 
-/* Star shading code*/
-.rating {
-  unicode-bidi: bidi-override;
-  direction: ltr;
-  padding-bottom: 40px;
-  font-size: 19px;
+.chef-info-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    height: 150px;
+    position: relative;
+    align-items: center;
 }
-.rating > span {
-  display: inline-block;
-  position: relative;
-  width: 1.1em;
+
+.rating-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 105%;
 }
-.rating > span:hover:before,
-.rating > span:hover ~ span:before {
-   content: "\2605";
-   position: absolute;
+
+.column-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 50%;
+    max-width: 50%;
+    height: 100%;
+    padding-top: 10px;
 }
+
+.column-container h2 {
+    margin-top: 25px;
+}
+
+.chef-container{
+    display: flex;
+    width: 100%;
+    flex-direction: column;    
+}
+
+.popular-recipe-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.pop-recipe {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.pop-recipe img {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.recipe-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.recipe {
+    position: relative;
+    flex: 25%;
+    max-width: 25%;
+    height: auto;
+    overflow: hidden;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.recipe img {
+    object-fit: cover;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.recipe-info{
+    position: absolute;
+    font-family: cursive;
+    color: azure; 
+    text-decoration: none;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+}
+
+a{
+    font-size: 150%;
+    color: aliceblue
+}
+
+
+.chef-recipe-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+.hr {
+    border-width: 0.8px;
+    border-color: rgba(0.9,0.8,0.8, 1.0);
+    border-style: solid;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.verticalbar {
+    border-width: 0.8px;
+    border-color: rgba(0.9,0.8,0.8, 1.0);
+    border-style: solid;
+    height: 50%;
+}
+
+
 
