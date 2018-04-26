@@ -51,8 +51,14 @@ def home():
     leftOvers = len(reg_recipes) - perColumn * 3
     random.shuffle(reg_recipes)
 
-    print(popular_recipes[0])
-    return render_template('main.html', popular=popular_recipes, recipes=reg_recipes, perColumn=perColumn, leftOvers=leftOvers)
+    fav_recipe_rows = db.execute('select * from favorite_recipes where email=?', [session.get(userKey)])
+    favR = []
+
+    for row in fav_recipe_rows:
+        favR.append(row["recipe_id"])
+
+    print(favR)
+    return render_template('main.html', popular=popular_recipes, recipes=reg_recipes, perColumn=perColumn, leftOvers=leftOvers, favRecipes=favR)
 
 @app.route("/login", methods=['POST'])
 def do_login():
@@ -156,6 +162,26 @@ def do_switch():
     loginType = str(request.form['json'])
     print(loginType)
     return render_template('login-form.html', type=loginType)
+
+@app.route("/handleLike", methods=['POST'])
+def handle_like():
+    receipe_id = request.form['json']
+    shouldadd = request.form["tvalue"]
+
+    print(shouldadd)
+
+    user = session.get(userKey)
+    db = get_db()
+
+    if shouldadd == True:
+        print("WE ARE ADDING", shouldadd)
+        db.execute('insert into favorite_recipes (email, recipe_id) values (?, ?)', [user, receipe_id])
+        db.commit()
+    else:
+        db.execute('delete from favorite_recipes where email=? and recipe_id=?', [user, receipe_id])
+        db.commit()
+
+    return jsonify({"status": "OK"}), 200
 
 ##DEV FUNCTIONS
 @app.teardown_appcontext
