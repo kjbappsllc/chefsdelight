@@ -94,9 +94,10 @@
             {%for i in range(chef|length)%}
             <div class="recipe">
                 <img src= {{chef[i]["imagesrc"]}} style="width: 200px; height: 200px;">
+                <font size = 4>
                 <div class="recipe-info">
-                    <p> {{chef.name}}</p>
-                </div>
+                    <p> {{chef[i].name}}</p>
+                </font></div>
             </div>
             {%endfor%}
     </div>
