@@ -9,61 +9,98 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/reuseable.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/chef.css') }}">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Check Radio-box
+            $(".rating input:radio").attr("checked", false);
+
+            $('.rating input').click(function () {
+                $(".rating span").removeClass('checked');
+                $(this).parent().addClass('checked');
+            });
+
+            $('input:radio').change(
+                function () {
+                    var userRating = this.value;
+                    alert(userRating);
+
+                });
+        });
+    </script>
 </head>
 
 <body>
 
     <header>
-        <div class="row header-main">
-            <h1 class="header-text-main">CD</h1>
+        <div class="header-content">
+            <div class="header-row">
+                <h1 class="header-text-main">CD</h1>
+            </div>
+
+            <div class="header-content-text-container">
+                <h2> {{chef[0].fname}} {{chef[0].lname}}</h2>
+                <h4> {{chef[0].restaurant}}</h4>
+                <h5> {{chef[0].email}}</h5>
+            </div>
         </div>
     </header>
-    
-    <!--  BODY ---->
-
     <!-- CHEF INFO -->
-    <h1 class="chefandres"> Chef Name - Best Food Spot</h1>
 
-    <h5 class="chefemail"> ChefCurry@chefitup.chef</h5>
-
-    <h2 class="chefrating"> Chefs rating:</h2>
-    <div class="rating">
-        <span>☆</span>
-        <span>☆</span>
-        <span>☆</span>
-        <span>☆</span>
-        <span>☆</span>
-    </div>
-
-    <!-- Try to figure out how to place image on the same column as the chef rating -->
-    <div class="chefpic">
-        <img src="chefcurry.jpg" alt="Pic of Chef Curry" style="width: 150px; height: 150px">
-    </div>
-
-    <!-- Use Grid Once i figure out how to use it-->
-    <!-- List of chef's Dishes-->
-    <h3 class="dish"> Dishes</h3>
-
-    <p>Krabby Patty</p>
-    <img src="kp.jpg" alt="A Fuccn Krabby Patty">
-
-    <div class="inglink">
-        <a href="https://www.fakeshit.com" target="blank"> Krabby Patty Ingredients! </a>
-    </div>
-
-    <!-- rate the chef code-->
-    <div class="commentbar">
-        <form action="/html/tags/html_form_tag_action.cfm" method="post">
-            <div>
-                <textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;">
-            Type Comments
-            </textarea>
+    <div class="chef-container">
+        <div class="chef-info-container">
+            <div class="column-container">
+                <h2> Recipes</h2>
+                <p> {{numrecipes}} </p>
             </div>
-            <input type="submit" value="Submit">
-        </form>
+            <div class="verticalbar">
+            </div>
+            <div class="column-container">
+                <h2> Ratings</h2>
+                <p> {{ratings}} </p>
+            </div>
+            <div class="hr"></div>
+        </div>
     </div>
 
-
+    <div class="chef-recipe-container">
+        <div class="popular-recipe-container">
+            <h2> Most Popular Recipe</h2>
+            <div class="pop-recipe">
+                <a href="dish.html">
+                    <img src="https://picsum.photos/900/200" style="width: 200px; height: 200px;">
+                </a>
+            </div>
+        </div>
+        <p>Rate the chef!</p>
+        <div class="txt-center">
+            <form>
+                <div class="rating">
+                    <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
+                    <label for="star5">☆</label>
+                    <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
+                    <label for="star4">☆</label>
+                    <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+                    <label for="star3">☆</label>
+                    <input id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
+                    <label for="star2">☆</label>
+                    <input id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
+                    <label for="star1">☆</label>
+                    <div class="clear"></div>
+                </div>
+            </form>
+        </div>
+        <div class="recipe-container">
+            {%for i in range(chef|length)%}
+            <div class="recipe">
+                <img src= {{chef[i]["imagesrc"]}} style="width: 200px; height: 200px;">
+                <div class="recipe-info">
+                    <p> {{chef[i]["name"]}}</p>
+                </div>
+            </div>
+            {%endfor%}
+    </div>
+    </div>    
 </body>
 
 </html>

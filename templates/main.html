@@ -10,6 +10,45 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/reuseable.css') }}">
     <link rel="stylesheet" type="text/css" media="screen" href="{{url_for('static', filename='styles/main.css')}}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type=text/javascript>
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+    <script>
+        $(document).on('click', 'div#heart', function () {
+            var divClass = String($(this).attr("class")).split(" ")
+            var shouldAdd = false;
+            if ($.inArray("unliked", divClass) !== -1) {
+                console.log("YES")
+                shouldAdd = true;
+            } else {
+                console.log("NO")
+                shouldAdd = false
+            }
+            console.log(divClass)
+            $.ajax({
+                type: "POST",
+                url: $SCRIPT_ROOT + '/handleLike',
+                data: { json: $(this).find('p#recipe-id').text(), tvalue: shouldAdd },
+                success: (response) => {
+                    console.log("Success")
+                    if (shouldAdd) {
+                        console.log("should add")
+                        $(this).removeClass("unliked")
+                        $(this).addClass("liked")
+                    } else {
+                        console.log("should remove")
+                        $(this).removeClass("liked")
+                        $(this).addClass("unliked")
+                    }
+                },
+                error: function (err) {
+
+                }
+            });
+        })
+
+    </script>
 </head>
 
 <body>
@@ -61,8 +100,18 @@
                         </a>
                         <div class="image-text-content">
                             <div style="margin-bottom:  10px">
-                                <h3 style="margin-bottom: 5px">{{recipes[i]["name"]}}</h3>
-
+                                <div class="top-container">
+                                    <h3 style="margin-bottom: 5px">{{recipes[i]["name"]}}</h3>
+                                    {%if recipes[i]["recipe_id"] in favRecipes%}
+                                    <div class="favorite fa fa-heart liked" id="heart">
+                                        <p id="recipe-id" style="display: none">{{recipes[i]["recipe_id"]}}</p>
+                                    </div>
+                                    {% else %}
+                                    <div class="favorite fa fa-heart unliked" id="heart">
+                                        <p id="recipe-id" style="display: none">{{recipes[i]["recipe_id"]}}</p>
+                                    </div>
+                                    {% endif %}
+                                </div>
                                 {% for x in range(5) %} {% if x >= recipes[i]["avgRating"] %}
                                 <span class="fa fa-star"></span>
                                 {%else%}
@@ -88,7 +137,18 @@
                         </a>
                         <div class="image-text-content">
                             <div style="margin-bottom:  10px">
-                                <h3 style="margin-bottom: 5px">{{recipes[i]["name"]}}</h3>
+                                <div class="top-container">
+                                    <h3 style="margin-bottom: 5px">{{recipes[i]["name"]}}</h3>
+                                    {%if recipes[i]["recipe_id"] in favRecipes%}
+                                    <div class="favorite fa fa-heart liked" id="heart">
+                                        <p id="recipe-id" style="display: none">{{recipes[i]["recipe_id"]}}</p>
+                                    </div>
+                                    {% else %}
+                                    <div class="favorite fa fa-heart unliked" id="heart">
+                                        <p id="recipe-id" style="display: none">{{recipes[i]["recipe_id"]}}</p>
+                                    </div>
+                                    {% endif %}
+                                </div>
 
                                 {% for x in range(5) %} {% if x >= recipes[i]["avgRating"] %}
                                 <span class="fa fa-star"></span>
@@ -110,12 +170,23 @@
                 <div class="image-column">
                     {% for i in range(perColumn * 2, perColumn * 3 + leftOvers) %}
                     <div class="image-container">
-                        <a href="{{url_for('go_recipe', recipe=recipes[i]["recipe_id"])}}">
+                        <a href="{{url_for('go_recipe', recipe=recipes[i][" recipe_id "])}}">
                             <img src={{recipes[i][ "imagesrc"]}} />
                         </a>
                         <div class="image-text-content">
                             <div style="margin-bottom:  10px">
-                                <h3 style="margin-bottom: 5px">{{recipes[i]["name"]}}</h3>
+                                <div class="top-container">
+                                    <h3 style="margin-bottom: 5px">{{recipes[i]["name"]}}</h3>
+                                    {%if recipes[i]["recipe_id"] in favRecipes%}
+                                    <div class="favorite fa fa-heart liked" id="heart">
+                                        <p id="recipe-id" style="display: none">{{recipes[i]["recipe_id"]}}</p>
+                                    </div>
+                                    {% else %}
+                                    <div class="favorite fa fa-heart unliked" id="heart">
+                                        <p id="recipe-id" style="display: none">{{recipes[i]["recipe_id"]}}</p>
+                                    </div>
+                                    {% endif %}
+                                </div>
 
                                 {% for x in range(5) %} {% if x >= recipes[i]["avgRating"] %}
                                 <span class="fa fa-star"></span>
