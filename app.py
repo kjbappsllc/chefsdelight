@@ -129,7 +129,16 @@ def do_signup():
 @app.route("/chef/<chef>")
 def go_chef(chef):
     print(chef)
-    return render_template('chef-page.html')
+    db = get_db()
+    chefrows = db.execute('select * from chefs natural join recipes where email=?',[chef])
+    chefrecipes = [] 
+    for row in chefrows:
+        print(dict(row))
+        chefrecipes.append(dict(row))
+    ratingrow = db.execute('select count(*) from chef_ratings where chef_email= ?',[chef])
+    chefrating = ratingrow.fetchone()[0]
+    return render_template('chef-page.html', chef = chefrecipes, numrecipes = len(chefrecipes), ratings = chefrating)
+    
 
 @app.route("/recipe/<recipe>")
 def go_recipe(recipe):

@@ -2,3 +2,5 @@ ChefsDelight.db
 ChefsDelightDataBase.xlsx
 __pycache__
 .vscode
+.DS_Store
+templates/.DS_Store
