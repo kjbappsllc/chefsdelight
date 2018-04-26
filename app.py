@@ -45,6 +45,7 @@ def home():
         recipe_row["avgRating"] = avgRating
         recipes.append(recipe_row)
     
+    print(recipes)
     popular_recipes = [recipes[i] for i in range(10)]
     reg_recipes = [recipes[i] for i in range(10, len(recipes))]
     perColumn = math.floor(len(reg_recipes) / 3)
@@ -149,7 +150,16 @@ def go_chef(chef):
 @app.route("/recipe/<recipe>")
 def go_recipe(recipe):
     print(recipe)
-    return render_template('recipe-page.html')
+    db = get_db()
+    row = db.execute('select * from recipes natural join chefs where recipe_id=?',[recipe])
+    recipe = db.execute('select * from ingredients natural join recipes where recipe_id=?', [recipe])
+    ingredients = []
+    for ing in recipe:
+        ingredients.append(dict(ing))
+        print(dict(ing))
+    currRecipe = dict(row.fetchone())
+    print(dict(currRecipe))
+    return render_template('recipe-page.html', recipe=currRecipe, ingredients=ingredients)
 
 @app.route("/profile/")
 def go_profile():
